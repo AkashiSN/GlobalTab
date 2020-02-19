@@ -5,11 +5,15 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import net.kyori.text.TextComponent;
 import net.kyori.text.serializer.legacy.LegacyComponentSerializer;
+import org.slf4j.Logger;
 
 public class TabBuilder {
+    public static Logger logger;
+
     public static TextComponent formatPlayerTab(String raw, Player player) {
 
         raw = raw.replace("%username%", player.getUsername());
+        logger.info(player.getUsername());
         raw = raw.replace("%prefix%", UserInfoGetter.getPrefixFromUsername(player.getUsername()));
         raw = raw.replace("%suffix%", UserInfoGetter.getSuffixFromUsername(player.getUsername()));
         raw = raw.replace("%server%", getCurrentServer(player));
